@@ -52,7 +52,7 @@
             </div>
             <div class="row">
                 <div class="col-12 mt-2">
-                    <table class="table table-striped table-inverse table-responsive">
+                    <table class="table  table-striped table-bordered table-inverse table-responsive">
                         <thead class="thead-inverse">
                             <tr>
                                 <th>Index</th>
@@ -74,16 +74,25 @@
                                 @endphp
                                 <tr>
                                     <td scope="row">{{ $i }}</td>
-                                    <td scope="row">{{ $product->image }}</td>
+                                    <td scope="row">
+                                        @foreach ($product->images as $image)
+                                            <img src="{{ '/upload/ProductImage/' . $image->image_url }}" id="#output"
+                                                class="img-fluid rounded" width="100px" alt=""
+                                                style="object-fit: cover; object-position:center" />
+                                        @endforeach
+                                    </td>
                                     <td scope="row">{{ $product->name }}</td>
                                     <td scope="row">{{ $product->price }}</td>
                                     <td scope="row">{{ $product->description }}</td>
                                     <td scope="row">{{ $product->category->name }}</td>
-                                    <td scope="row" class="d-flex gap-2">
-                                        <a href="" class="btn btn-primary">View</a>
-                                        <a href="" class="btn btn-success">Update</a>
-                                        <form action="" method="post">
+                                    <td scope="row" class="d-flex gap-2 justify-items-center">
+                                        <a href="{{ route('allproduct.show', $product->id) }}"
+                                            class="btn btn-primary ">View</a>
+                                        <a href="{{ route('allproduct.edit', $product->id) }}"
+                                            class="btn btn-success">Update</a>
+                                        <form action="{{ route('allproduct.destroy', $product->id) }}" method="post">
                                             @csrf
+                                            @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                     </td>
@@ -97,7 +106,90 @@
                     </div>
                 </div>
             </div>
+
+            {{-- <div class="row">
+                <div class="col-12 mt-2">
+                    <table class="table  table-bordered table-responsive">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Index</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th>Category Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $i = 0;
+                            @endphp
+                            @foreach ($products as $product)
+                                @php
+                                    $i++;
+                                @endphp
+                                <tr>
+                                    <td>{{ $i }}</td>
+                                    <td>
+                                        @foreach ($product->images as $image)
+                                            <img src="{{ '/upload/ProductImage/' . $image->image_url }}"
+                                                class="img-fluid rounded" width="100px" alt="{{ $product->name }}"
+                                                style="object-fit: cover; object-position:center; margin-right: 5px;" />
+                                        @endforeach
+                                    </td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>{{ $product->description }}</td>
+                                    <td>{{ $product->category->name }}</td>
+                                    <td class="d-flex gap-2">
+                                        <a href="{{ route('allproduct.show', $product->id) }}"
+                                            class="btn btn-primary ">View</a>
+                                        <a href="{{ route('allproduct.edit', $product->id) }}"
+                                            class="btn btn-success ">Update</a>
+                                        <form action="{{ route('allproduct.destroy', $product->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger ">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div class="container fs-5 text-dark mt-3">
+                        {{ $products->links('pagination::bootstrap-5') }}
+                    </div>
+                </div>
+            </div>--}}
+
         </div>
+
+
+
+        {{-- model for single product
+        <div class="modal fade" id="SingleProductModel" tabindex="-1" role="dialog"
+            aria-labelledby="SingleProductModelTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="SingleProductModelTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+
+
 
     </main>
 
