@@ -52,11 +52,11 @@
             </div>
             <div class="row">
                 <div class="col-12 mt-2">
-                    <table class="table  table-striped table-bordered table-inverse table-responsive">
-                        <thead class="thead-inverse">
-                            <tr>
+                    <table class="table  table-striped table-borderless table-inverse table-responsive-lg table-hover">
+                        <thead class=" ">
+                            <tr class="table-dark">
                                 <th>Index</th>
-                                <th>Image</th>
+                                <th>Images</th>
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Description</th>
@@ -73,27 +73,26 @@
                                     $i++;
                                 @endphp
                                 <tr>
-                                    <td scope="row">{{ $i }}</td>
-                                    <td scope="row">
+                                    <td>{{ $i }}</td>
+                                    <td>
                                         @foreach ($product->images as $image)
                                             <img src="{{ '/upload/ProductImage/' . $image->image_url }}" id="#output"
-                                                class="img-fluid rounded" width="100px" alt=""
-                                                style="object-fit: cover; object-position:center" />
+                                                class="img-fluid rounded my-1" width="70px" alt="" />
                                         @endforeach
                                     </td>
-                                    <td scope="row">{{ $product->name }}</td>
-                                    <td scope="row">{{ $product->price }}</td>
-                                    <td scope="row">{{ $product->description }}</td>
-                                    <td scope="row">{{ $product->category->name }}</td>
-                                    <td scope="row" class="d-flex gap-2 justify-items-center">
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>{{ $product->description }}</td>
+                                    <td>{{ $product->category->name }}</td>
+                                    <td >
                                         <a href="{{ route('allproduct.show', $product->id) }}"
-                                            class="btn btn-primary ">View</a>
+                                            class="btn btn-primary mt-2 btn-sm">View</a>
                                         <a href="{{ route('allproduct.edit', $product->id) }}"
-                                            class="btn btn-success">Update</a>
+                                            class="btn btn-success mt-2 btn-sm">Update</a>
                                         <form action="{{ route('allproduct.destroy', $product->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger mt-2 btn-sm">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -161,7 +160,7 @@
                         {{ $products->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
-            </div>--}}
+            </div> --}}
 
         </div>
 
