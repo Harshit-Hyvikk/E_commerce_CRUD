@@ -84,7 +84,7 @@
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->description }}</td>
                                     <td>{{ $product->category->name }}</td>
-                                    <td >
+                                    <td>
                                         <a href="{{ route('allproduct.show', $product->id) }}"
                                             class="btn btn-primary mt-2 btn-sm">View</a>
                                         <a href="{{ route('allproduct.edit', $product->id) }}"
